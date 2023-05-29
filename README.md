@@ -43,24 +43,8 @@ They are based on the original KeypointNet found in the original repository.
  |Name | Channel sizes | nfeatures | downs. |  feature head | activation  | parameters  |  size [mb] | size quant. [mb]|
 |---|---|---|---|---|---|---|---|---|
  Baseline | 32, 64, 128, 256, 256 | 256 | 3 | 128 | leakyReLu | 5,317k | 20.4 | **5.1**|
- KP2DtinyV1 | 16, 32, 32, 64, 64 | 32 | 2 | 32 | ReLu | 387k | 1.48 |  **0.37**|
- KP2DtinyV2 |  16, 32, 64, 128, 128 | 64 | 3 | 128 | ReLu | 1,849k | 7.6 | **1.9**|
-KP2DtinyV0 | 16, 16, 32, 32, 32 | 32 | 1 | 32 | ReLu | 141k | 0.64 | **0.16** |
-### KP2DtinyV1
-
----
-![KP2DtinyV1](rsc/tinyv1.png)
-
-### KP2DtinyV2
-
----
-![KP2DtinyV2](rsc/tinyv2.png)
-
-
-### KP2DtinyV0
-
----
-Experimental architecture to test how small we can go.
+ KP2DtinyS | 16, 32, 32, 64, 64 | 32 | 2 | 32 | ReLu | 387k | 1.48 |  **0.37**|
+ KP2DtinyF |  16, 32, 64, 128, 128 | 64 | 3 | 128 | ReLu | 1,849k | 7.6 | **1.9**|
 ## Code Overview
 
 ---
@@ -86,23 +70,14 @@ Logging with [wandb](https://wandb.ai/) is enabled by default. To disable use th
 
 ---
 Setup coral environment [link](https://coral.ai/docs/accelerator/get-started/#requirements)
-- run ```python train.py``` to train the model
-- run ```python tflite_converter.py``` to get the general tflite model
+- run ```python scripts/train.py``` to train the model
+- run ```python scripts/quantize.py``` to get the general tflite model
 - run ```edgetpu_compiler model.tflite``` to get the edge tpu model
-- evaluate using ```python evaluate_TFlite.py --m model.tflite --c MODEL_CONFIG_NAME --use-tpu```
-
-### Example
-- train model ``python train.py --c KP2D320Baseline``
-- evaluate model before quantization ``python evaluate_keypointnet.py --w KP2D320Baseline.hdf5 --c KP2D320Baseline``
-- convert hdf5 model to tflite ``python tflite_converter.py --w KP2D320Baseline.hdf5 --c KP2D320Baseline``
-- evaluate tflite model ``python evaluate_TFlite.py --m KP2D320Baseline.tflite --c KP2D320Baseline``
-- compile edge tpu model ``edgetpu_compiler KP2D320Baseline.tflite``
-- evaluate flite model compiled for edge tpu ``python evaluate_TFlite.py --m KP2D320Baseline_edgetpu.tflite --c KP2D320Baseline --use-tpu``
-
+- evaluate using ```python evaluate_quantized.py --m model.tflite --c MODEL_CONFIG_NAME --use-tpu```
 ## Results
 
 ---
-### 240x320 1000 points
+### 320x240 1000 points
 |Metric|Baseline|TinyV1|TinyV2|Baseline Q|TinyV1 Q|TinyV2 Q|
 |---|---|---|---|---|---|---|
 | Repeatability  | 0.670| 0.746| 0.652|  0.663| 0.735| 0.647| 
