@@ -1,0 +1,6 @@
+tensorflow-addons
+tensorflow-model-optimization
+matplotlib
+opencv-python
+tqdm
+wandb
