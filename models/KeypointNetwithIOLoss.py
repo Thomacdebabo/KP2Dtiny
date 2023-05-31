@@ -8,7 +8,7 @@ from networks.inlier_net import InlierNet
 
 from utils.keypoints import draw_keypoints
 from networks.keypoint_net_mobile import KeypointNetMobile
-from utils.utils import grid_sample_2d
+from utils.grid_sample import grid_sample_2d
 
 @tf.function
 def build_descriptor_loss(source_des, target_des, source_points, tar_points, tar_points_un, keypoint_mask=None, relax_field=8,epsilon=1e-8, eval_only=False):

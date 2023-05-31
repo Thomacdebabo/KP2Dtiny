@@ -43,8 +43,8 @@ They are based on the original KeypointNet found in the original repository.
  |Name | Channel sizes | nfeatures | downs. |  feature head | activation  | parameters  |  size [mb] | size quant. [mb]|
 |---|---|---|---|---|---|---|---|---|
  Baseline | 32, 64, 128, 256, 256 | 256 | 3 | 128 | leakyReLu | 5,317k | 20.4 | **5.1**|
- KP2DtinyS | 16, 32, 32, 64, 64 | 32 | 2 | 32 | ReLu | 387k | 1.48 |  **0.37**|
- KP2DtinyF |  16, 32, 64, 128, 128 | 64 | 3 | 128 | ReLu | 1,849k | 7.6 | **1.9**|
+ KP2DtinyS (tinyV1)| 16, 32, 32, 64, 64 | 32 | 2 | 32 | ReLu | 387k | 1.48 |  **0.37**|
+ KP2DtinyF (tinyV2) |  16, 32, 64, 128, 128 | 64 | 3 | 128 | ReLu | 1,849k | 7.6 | **1.9**|
 ## Code Overview
 
 ---
@@ -55,14 +55,14 @@ This repository is following the same structure as the pytorch version.
 - **models**: This folder contains the model called KeypointNetwithIOLoss. Don't confuse this with the network called KeypointNet. This model contains the KeypointNet and also handles the loss functions. The forward pass of this model returns the loss which we can then call the backward pass on. This model is only used during training. KeypointNetTFLite implements a wrapper to run .tflite models.
 - **networks**: stores implementations for KeypointNet and IO-Net.
 - **utils**: Various utility functions.
-- **TFLite**: contains standalone code for the raspberry pi
+- **demo**: runs real time demo on coral
 
 
 ### Provided scripts:
 - ```train.py```: Training script for KeypointNet
-- ```evaluate_keypointnet.py```: Evaluation script for KeypointNet, specify if model has been trained using QAT.
-- ```tflite_converter.py```: Converts a .hdf5 model to tflite. Note: Make sure model name matches the config, resolution can be different for example: converting a KP2D88tinyV1 model with KP2D320tinyV1 config works but KP2D88tinyV1 with KP2D88tinyV2 does not.
-- ```evaluate_TFlite.py```: Evaluation script for Tflite models. Use --ues-tpu to run evaluation on edge tpu.
+- ```evaluate_full_precision.py```: Evaluation script for KeypointNet, specify if model has been trained using QAT.
+- ```quantize.py```: Converts and quantizes a .hdf5 model to tflite. Note: Make sure model name matches the config, resolution can be different for example: converting a KP2D88tinyV1 model with KP2D320tinyV1 config works but KP2D88tinyV1 with KP2D88tinyV2 does not.
+- ```evaluate_quantized.py```: Evaluation script for Tflite models. Use --ues-tpu to run evaluation on edge tpu.
 
 Logging with [wandb](https://wandb.ai/) is enabled by default. To disable use the ```--disable-wandb``` flag when running a script.
 

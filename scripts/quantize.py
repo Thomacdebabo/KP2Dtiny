@@ -62,7 +62,8 @@ def parse_args():
     my_parser.add_argument('--legacy', action='store_true')
     my_parser.add_argument('--to-coral', action='store_true')
     my_parser.add_argument('--batch-size', type=int, default=4)
-    my_parser.add_argument('--n-samples', type=int, default=100)
+    my_parser.add_argument('--n-samples', type=int, default=1)
+    # Note that we find that using a single image batch for n-samples seems to work the best.
 
     return my_parser.parse_args()
 

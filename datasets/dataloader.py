@@ -3,7 +3,7 @@ import glob
 import tensorflow as tf
 import tensorflow_addons as tfa
 import datasets.augmentations as aug
-from utils.utils import grid_sample_2d
+from utils.grid_sample import grid_sample_2d
 import numpy as np
 import random
 from utils.image import image_grid

@@ -1,10 +1,5 @@
-# Copyright 2020 Toyota Research Institute.  All rights reserved.
-
 import tensorflow as tf
 import tensorflow_addons as tfa
-# Slightly modified version of 1d-CNN from https://arxiv.org/abs/1905.04132.
-# More details: https://github.com/vislearn/ngransac
-# Code adapted from https://github.com/vislearn/ngransac/blob/master/network.py
 from tensorflow.keras import layers
 
 class ResNetBlock(tf.keras.layers.Layer):

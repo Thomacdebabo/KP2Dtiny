@@ -1,11 +1,10 @@
-# Copyright 2020 Toyota Research Institute.  All rights reserved.
 import keras.layers
 import tensorflow as tf
 from utils.grid_sample import grid_sample_2d
 from utils.image import image_grid
 from tensorflow.keras import layers
-
 import tensorflow_model_optimization as tfmot
+
 class NoOpQuantizeConfig(tfmot.quantization.keras.QuantizeConfig):
   """QuantizeConfig which does not quantize any part of the layer."""
   def get_weights_and_quantizers(self, layer):
