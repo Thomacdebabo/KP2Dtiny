@@ -1,4 +1,4 @@
-# KP2D Tensorflow
+# KP2DTiny
 
 ---
 This is a tensorflow implementation of KP2D, the original work can be found [here](https://github.com/TRI-ML/KP2D). 
