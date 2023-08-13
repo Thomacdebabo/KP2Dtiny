@@ -1,6 +1,8 @@
 # KP2DTiny
 
 ---
+Published at [AICAS 2023] (https://ieeexplore.ieee.org/document/10168598)
+---
 This is a tensorflow implementation of KP2D, the original work can be found [here](https://github.com/TRI-ML/KP2D). 
 We introduce tools and adjusted model architectures to deploy KP2D on embedded platforms, in particular the [Coral USB Accelerator]().
 
