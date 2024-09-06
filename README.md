@@ -1,6 +1,5 @@
 # KP2DTiny
 
----
 This is a tensorflow implementation of KP2D, the original work can be found [here](https://github.com/TRI-ML/KP2D). 
 We introduce tools and adjusted model architectures to deploy KP2D on embedded platforms, in particular the [Coral USB Accelerator]().
 
@@ -9,7 +8,6 @@ For more information please refer to our paper published at [AICAS 2023](https:/
 
 ## Installation
 
----
 1. set up conda environment
 2. Install [tensorflow](https://www.tensorflow.org/install/pip)
 3. Install requirements with ```pip3 install -r requirements.txt```
@@ -69,7 +67,7 @@ Logging with [wandb](https://wandb.ai/) is enabled by default. To disable use th
 
 ## Deploy on coral
 
----
+
 Setup coral environment [link](https://coral.ai/docs/accelerator/get-started/#requirements)
 - run ```python scripts/train.py``` to train the model
 - run ```python scripts/quantize.py``` to get the general tflite model
