@@ -5,6 +5,16 @@ We introduce tools and adjusted model architectures to deploy KP2D on embedded p
 
 While we only tested the coral ai device the conversion scripts exports a tflite model which should be compatible with a wide variety of devices. 
 For more information please refer to our paper published at [AICAS 2023](https://ieeexplore.ieee.org/document/10168598)
+## Introduction
+KP2D is a fully unsupervised feature detector and descriptor model. It is based on the [superpoint](https://arxiv.org/abs/1712.07629) architecture and expands on the semi supervised learning methods proposed in [UnsuperPoint](https://arxiv.org/abs/1907.04011). 
+- **Keypoint detection and description** or also known as [feature detection and description](https://docs.opencv.org/3.4/db/d27/tutorial_py_table_of_contents_feature2d.html), is a fundamental problem in computer vision where the goal is to find and describe points or regions in an image which are distinct and stable over multiple viewpoints, allowing us to triangulate their 3D position.
+- **Unsupervised learning** refers to learning methods which do not require exact ground truth data, as is typical in supervised learning methods. In our case this means to train this model we only require RGB images to train our model. This makes training such a model on a custom dataset very cheap, since there is no need for manual annotation of data.
+
+With KP2Dtiny we bring deep learning based keypoint detection and description to edge platforms. Our main contributions are:
+- tensorflow implementation to export the model in the tflite format
+- optimizing the model for inference on microcontrollers
+- reducing the size from **20.4** MB to **0.37** MB
+- significant improvement in accuracy on homography estimation (d1: 10%)
 
 ## Installation
 
@@ -34,7 +44,7 @@ unzip train2017.zip
 
 Note: Any directory containing RGB images can be used as a training dataset.
 ## Model architectures
-
+![architecture](https://github.com/user-attachments/assets/53e9d891-ab85-435f-befe-d5d252825f56)
 ---
 We have designed two model architectures to work at low (88x88) and high (240x320) resolutions.
 They are based on the original KeypointNet found in the original repository.
@@ -74,6 +84,7 @@ Setup coral environment [link](https://coral.ai/docs/accelerator/get-started/#re
 - run ```edgetpu_compiler model.tflite``` to get the edge tpu model
 - evaluate using ```python evaluate_quantized.py --m model.tflite --c MODEL_CONFIG_NAME --use-tpu```
 ## Results
+![results](https://github.com/user-attachments/assets/6a8309ac-b7c0-4d66-a86d-da82ba1457ce)
 
 ---
 ### 320x240 1000 points
@@ -89,7 +100,7 @@ Setup coral environment [link](https://coral.ai/docs/accelerator/get-started/#re
 
 ### Comparing results **320x240**:
 
-| Model	| Repeatability |	Localization |	C1 |	C3 | 	C5 |	MScore |
+| Model	| Repeatability |	Localization |	d1 |	d3 | 	d5 |	MScore |
 |---|---|---|---|---|---|---|
 |SIFT k300|0.451| 0.855| 0.622| 0.845| 0.878| 0.304|
 | KP2D (previous work) k300|	0.687 |	0.892 |	0.593 |	0.867 |	0.91  |	0.546 |
