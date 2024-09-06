@@ -5,7 +5,7 @@ This is a tensorflow implementation of KP2D, the original work can be found [her
 We introduce tools and adjusted model architectures to deploy KP2D on embedded platforms, in particular the [Coral USB Accelerator]().
 
 While we only tested the coral ai device the conversion scripts exports a tflite model which should be compatible with a wide variety of devices. 
-For more information please refer to our paper published at [AICAS 2023] (https://ieeexplore.ieee.org/document/10168598)
+For more information please refer to our paper published at [AICAS 2023](https://ieeexplore.ieee.org/document/10168598)
 
 ## Installation
 
